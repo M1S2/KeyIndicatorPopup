@@ -1,0 +1,28 @@
+﻿<MetroControls:MetroWindow x:Class="KeyIndicatorPopup.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KeyIndicatorPopup"
+        xmlns:MetroControls="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:windowTheme="clr-namespace:KeyIndicatorPopup.WindowTheme"
+        mc:Ignorable="d"
+        Title="Key Indicator" Height="350" Width="525"
+        DataContext="{Binding Source={StaticResource Locator}, Path=Main}"
+        MetroControls:ControlsHelper.ContentCharacterCasing="Normal">
+
+    <MetroControls:MetroWindow.RightWindowCommands>
+        <MetroControls:WindowCommands>
+            <windowTheme:WindowThemeUserControl/>
+
+            <!--<Button Command="{Binding InfoCommand}" ToolTip="About this application">
+                <iconPacks:PackIconModern Width="22" Height="22" Kind="InformationCircle" Foreground="{DynamicResource IdealForegroundColorBrush}"/>
+            </Button>-->
+        </MetroControls:WindowCommands>
+    </MetroControls:MetroWindow.RightWindowCommands>
+    
+    <Grid>
+        
+    </Grid>
+</MetroControls:MetroWindow>
