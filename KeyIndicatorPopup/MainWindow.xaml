@@ -8,9 +8,11 @@
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:windowTheme="clr-namespace:KeyIndicatorPopup.WindowTheme"
         mc:Ignorable="d"
-        Title="Key Indicator" Height="350" Width="525"
+        Title="Key Indicator Configuration" Height="350" Width="525"
         DataContext="{Binding Source={StaticResource Locator}, Path=Main}"
-        MetroControls:ControlsHelper.ContentCharacterCasing="Normal">
+        MetroControls:ControlsHelper.ContentCharacterCasing="Normal"
+        Icon="Resources\AppIcon.ico"
+        Name="mainWindow">
 
     <MetroControls:MetroWindow.RightWindowCommands>
         <MetroControls:WindowCommands>
@@ -23,6 +25,10 @@
     </MetroControls:MetroWindow.RightWindowCommands>
     
     <Grid>
-        
+        <Popup x:Name="popup1" Width="100" Height="100" AllowsTransparency="True" PopupAnimation="Fade" IsOpen="{Binding PopupOpen}" PlacementTarget="{Binding ElementName=mainWindow}" Placement="Relative" HorizontalOffset="0" VerticalOffset="0">
+            <Border BorderThickness="2" BorderBrush="Black" Background="Gray">
+                <TextBlock Text="ABC" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Border>
+        </Popup>
     </Grid>
 </MetroControls:MetroWindow>

@@ -16,12 +16,16 @@ namespace KeyIndicatorPopup.ViewModel
     /// </summary>
     public class MainViewModel : ViewModelBase
     {
+        // https://www.codeproject.com/Articles/36468/WPF-NotifyIcon-2
+
+        public bool PopupOpen { get; set; }
+
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
         public MainViewModel()
         {
-
+            PopupOpen = true;
         }
     }
 }
