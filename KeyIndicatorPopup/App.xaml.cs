@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using Hardcodet.Wpf.TaskbarNotification;
 
 namespace KeyIndicatorPopup
 {
@@ -14,28 +15,41 @@ namespace KeyIndicatorPopup
     /// see: https://www.thomasclaudiushuber.com/2015/08/22/creating-a-background-application-with-wpf/
     public partial class App : Application
     {
-        private System.Windows.Forms.NotifyIcon _notifyIcon;
+        /*private System.Windows.Forms.NotifyIcon _notifyIcon;
         private bool _isExit;
-        private GlobalKeyboardHook _globalKeyboardHook;
+        private GlobalKeyboardHook _globalKeyboardHook;*/
+
+        //see: https://www.codeproject.com/Articles/36468/WPF-NotifyIcon-2
+        //see: https://github.com/hardcodet/wpf-notifyicon/blob/master/Hardcodet.NotifyIcon.Wpf/Source/Windowless%20Sample/App.xaml.cs
+        private TaskbarIcon _notifyIcon;
 
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            MainWindow = new MainWindow();
-            MainWindow.Closing += MainWindow_Closing;
+            //create the notifyicon (it's a resource declared in NotifyIconResources.xaml)
+            _notifyIcon = (TaskbarIcon)FindResource("NotifyIcon");
 
-            _globalKeyboardHook = new GlobalKeyboardHook();
-            _globalKeyboardHook.KeyboardPressed += _globalKeyboardHook_KeyboardPressed;
+            //MainWindow = new MainWindow();
+            //MainWindow.Closing += MainWindow_Closing;
 
-            _notifyIcon = new System.Windows.Forms.NotifyIcon();
-            _notifyIcon.DoubleClick += (s, args) => ShowMainWindow();
-            _notifyIcon.Icon = KeyIndicatorPopup.Properties.Resources.AppIcon;
-            _notifyIcon.Visible = true;
+            //_globalKeyboardHook = new GlobalKeyboardHook();
+            //_globalKeyboardHook.KeyboardPressed += _globalKeyboardHook_KeyboardPressed;
 
-            CreateContextMenu();
+            //_notifyIcon = new System.Windows.Forms.NotifyIcon();
+            //_notifyIcon.DoubleClick += (s, args) => ShowMainWindow();
+            //_notifyIcon.Icon = KeyIndicatorPopup.Properties.Resources.AppIcon;
+            //_notifyIcon.Visible = true;
+
+            //CreateContextMenu();
         }
 
+        protected override void OnExit(ExitEventArgs e)
+        {
+            _notifyIcon.Dispose(); //the icon would clean up automatically, but this is cleaner
+            base.OnExit(e);
+        }
 
+        /*
         // see: https://stackoverflow.com/questions/17683620/c-sharp-actively-detect-lock-keys
         private void _globalKeyboardHook_KeyboardPressed(object sender, GlobalKeyboardHookEventArgs e)
         {
@@ -98,6 +112,6 @@ namespace KeyIndicatorPopup
                 e.Cancel = true;
                 MainWindow.Hide(); // A hidden window can be shown again, a closed one not
             }
-        }
+        }*/
     }
 }
