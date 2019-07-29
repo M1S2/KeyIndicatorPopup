@@ -84,7 +84,15 @@ namespace KeyIndicatorPopup.WindowTheme
         {
             Window window = Window.GetWindow(this);
             window.Closing += window_Closing;
-            
+
+            LoadSavedTheme();
+        }
+
+        /// <summary>
+        /// Load the saved theme and accent
+        /// </summary>
+        public void LoadSavedTheme()
+        {
             // Get the saved theme and accent
             AppThemeMenuData savedTheme = AppThemes.Where(t => t.Name == Properties.Settings.Default.AppTheme).FirstOrDefault();
             AccentColorMenuData savedAccent = AccentColors.Where(a => a.Name == Properties.Settings.Default.AppAccent).FirstOrDefault();

@@ -9,7 +9,6 @@ using System.Windows.Input;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using MahApps.Metro;
-using GalaSoft.MvvmLight.Command;
 
 namespace KeyIndicatorPopup.WindowTheme
 {
@@ -85,7 +84,7 @@ namespace KeyIndicatorPopup.WindowTheme
         /// </summary>
         public ICommand ChangeAccentCommand
         {
-            get { return this.changeAccentCommand ?? (changeAccentCommand = new RelayCommand(() => this.DoChangeTheme())); }
+            get { return this.changeAccentCommand ?? (changeAccentCommand = new RelayCommand((c)=>this.DoChangeTheme())); }
         }
 
         /// <summary>

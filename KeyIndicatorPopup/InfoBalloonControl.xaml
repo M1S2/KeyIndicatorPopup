@@ -7,13 +7,12 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
 
-    <UserControl.DataContext>
-        <Binding Source="{StaticResource notifyViewModel}"/>
-    </UserControl.DataContext>
-    
     <Grid>
-        <Border Background="#CCA9A9A9" BorderBrush="Gray" BorderThickness="2" CornerRadius="10" Width="150" Height="150" Margin="50">
-            <TextBlock FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding PressedKeyName}"/>
+        <Border Background="#CCA9A9A9" BorderBrush="{DynamicResource AccentBaseColorBrush}" BorderThickness="2" CornerRadius="10" Width="150" Height="150" Margin="50">
+            <Grid>
+                <TextBlock FontSize="16" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10" Text="{Binding TitleText}"/>
+                <TextBlock FontSize="45" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding InfoText}"/>
+            </Grid>
         </Border>
     </Grid>
 </UserControl>

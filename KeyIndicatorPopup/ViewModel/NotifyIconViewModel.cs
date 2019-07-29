@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using KeyIndicatorPopup.WindowTheme;
 using Hardcodet.Wpf.TaskbarNotification;
 
 namespace KeyIndicatorPopup.ViewModel
@@ -47,9 +48,9 @@ namespace KeyIndicatorPopup.ViewModel
         {
             get
             {
-                return new GalaSoft.MvvmLight.Command.RelayCommand(
-                    () => { Application.Current.MainWindow = new MainWindow(); Application.Current.MainWindow.Show(); },
-                    () => Application.Current.MainWindow == null);
+                return new RelayCommand(
+                    (c) => { Application.Current.MainWindow = new MainWindow(); Application.Current.MainWindow.Show(); },
+                    (c) => Application.Current.MainWindow == null);
             }
         }
 
@@ -60,9 +61,9 @@ namespace KeyIndicatorPopup.ViewModel
         {
             get
             {
-                return new GalaSoft.MvvmLight.Command.RelayCommand(
-                    () => Application.Current.MainWindow.Close(),
-                    () => Application.Current.MainWindow != null);
+                return new RelayCommand(
+                    (c) => Application.Current.MainWindow.Close(),
+                    (c) => Application.Current.MainWindow != null);
             }
         }
 
@@ -73,28 +74,23 @@ namespace KeyIndicatorPopup.ViewModel
         {
             get
             {
-                return new GalaSoft.MvvmLight.Command.RelayCommand(
-                    () => Application.Current.Shutdown());
+                return new RelayCommand(
+                    (c) => Application.Current.Shutdown());
             }
         }
 
         #endregion
 
-        private string _pressedKeyName;
-        public string PressedKeyName
-        {
-            get { return _pressedKeyName; }
-            set { _pressedKeyName = value;  OnPropertyChanged(); }
-        }
-
         private GlobalKeyboardHook _globalKeyboardHook;
-        private ResourceDictionary _notifyResourceDict = new ResourceDictionary();
+        //private ResourceDictionary _notifyResourceDict = new ResourceDictionary();
         private TaskbarIcon _notifyIcon;
+        private InfoBalloonControl _infoBalloon;
 
         public NotifyIconViewModel()
         {
-            _notifyResourceDict.Source = new Uri("/KeyIndicatorPopup;component/NotifyIconResources.xaml", UriKind.RelativeOrAbsolute);
-            //_notifyIcon = _notifyResourceDict["NotifyIcon"] as TaskbarIcon;
+            //_notifyResourceDict.Source = new Uri("/KeyIndicatorPopup;component/NotifyIconResources.xaml", UriKind.RelativeOrAbsolute);
+
+            _infoBalloon = new InfoBalloonControl();
 
             _globalKeyboardHook = new GlobalKeyboardHook();
             _globalKeyboardHook.KeyboardPressed += _globalKeyboardHook_KeyboardPressed;
@@ -104,28 +100,33 @@ namespace KeyIndicatorPopup.ViewModel
         {
             if (e.KeyboardState == GlobalKeyboardHook.KeyboardState.KeyUp)
             {
-                if (_notifyIcon == null) { _notifyIcon = _notifyResourceDict["NotifyIcon"] as TaskbarIcon; }
-                UIElement infoBalloon = _notifyResourceDict["InfoBalloon"] as System.Windows.Controls.UserControl;
+                _notifyIcon = ((App)Application.Current).NotifyIcon;
+                _infoBalloon.TitleText = e.KeyType.ToString();
 
-                PressedKeyName = e.KeyboardData.VirtualCode.ToString();
+                //infoBalloon = _notifyResourceDict["InfoBalloon"] as InfoBalloonControl;
 
-                if (e.KeyboardData.VirtualCode == GlobalKeyboardHook.VK_CAPITAL && System.Windows.Forms.Control.IsKeyLocked(System.Windows.Forms.Keys.CapsLock))
+                if (e.KeyboardData.VirtualCode == GlobalKeyboardHook.VK_CAPITAL && System.Windows.Forms.Control.IsKeyLocked(System.Windows.Forms.Keys.CapsLock))        //CAPS Lock enabled
                 {
-                    //_notifyIcon.ShowBalloonTip("CAPS LOCK (" + e.KeyType.ToString() + ")", "The CAPS LOCK key was pressed", BalloonIcon.Info);
-                    //infoBalloon.Text = "CAPS LOCK (" + e.KeyType.ToString() + ")  " + "The CAPS LOCK key was pressed";
+                    _infoBalloon.InfoText = "ABC";
                 }
-                else if (e.KeyboardData.VirtualCode == GlobalKeyboardHook.VK_CAPITAL && !System.Windows.Forms.Control.IsKeyLocked(System.Windows.Forms.Keys.CapsLock))
+                else if (e.KeyboardData.VirtualCode == GlobalKeyboardHook.VK_CAPITAL && !System.Windows.Forms.Control.IsKeyLocked(System.Windows.Forms.Keys.CapsLock))  //CAPS Lock disabled
                 {
-                    //_notifyIcon.ShowBalloonTip("CAPS LOCK (" + e.KeyType.ToString() + ")", "The CAPS LOCK key was released", BalloonIcon.Info);
-                    //infoBalloon.Text = "CAPS LOCK (" + e.KeyType.ToString() + ")  " + "The CAPS LOCK key was released";
+                    _infoBalloon.InfoText = "abc";
+                }
+                else if (e.KeyboardData.VirtualCode == GlobalKeyboardHook.VK_NUMLOCK && System.Windows.Forms.Control.IsKeyLocked(System.Windows.Forms.Keys.NumLock))  //NUM Lock enabled
+                {
+                    _infoBalloon.InfoText = "123";
+                }
+                else if (e.KeyboardData.VirtualCode == GlobalKeyboardHook.VK_NUMLOCK && !System.Windows.Forms.Control.IsKeyLocked(System.Windows.Forms.Keys.NumLock))  //NUM Lock disabled
+                {
+                    _infoBalloon.InfoText = "NUM off";
                 }
                 else
                 {
-                    //_notifyIcon.ShowBalloonTip(e.KeyType.ToString(), "Keycode = " + e.KeyboardData.VirtualCode.ToString(), BalloonIcon.Info);
-                    //infoBalloon.Text = e.KeyType.ToString() + " Keycode = " + e.KeyboardData.VirtualCode.ToString();
+                    _infoBalloon.InfoText = char.ToString(Convert.ToChar(e.KeyboardData.VirtualCode));
                 }
 
-                _notifyIcon.ShowCustomBalloon(infoBalloon, System.Windows.Controls.Primitives.PopupAnimation.Fade, 2000);
+                _notifyIcon.ShowCustomBalloon(_infoBalloon, System.Windows.Controls.Primitives.PopupAnimation.Fade, 2000);
             }
         }
     }

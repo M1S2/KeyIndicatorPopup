@@ -10,7 +10,6 @@
         xmlns:tb="http://www.hardcodet.net/taskbar"
         mc:Ignorable="d"
         Title="Key Indicator Configuration" Height="350" Width="525"
-        DataContext="{Binding Source={StaticResource Locator}, Path=Main}"
         MetroControls:ControlsHelper.ContentCharacterCasing="Normal"
         Icon="Resources\AppIcon.ico"
         Name="mainWindow">

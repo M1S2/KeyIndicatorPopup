@@ -16,13 +16,9 @@
         <MenuItem Header="Exit" Command="{Binding ExitApplicationCommand}" />
     </ContextMenu>
 
-    <viewModels:NotifyIconViewModel x:Shared="true"  x:Key="notifyViewModel"/>
+    <viewModels:NotifyIconViewModel x:Shared="true" x:Key="notifyViewModel"/>
 
-    <local:InfoBalloonControl x:Key="InfoBalloon"/>
-
-    <!--<Border x:Key="InfoBalloon" Background="#CCA9A9A9" BorderBrush="Gray" BorderThickness="2" CornerRadius="10" Width="150" Height="150" Margin="50">
-        <TextBlock FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Text="ABC"/>
-    </Border>-->
+    <!--<local:InfoBalloonControl x:Key="InfoBalloon"/>-->  <!--InfoText="{Binding Source={StaticResource notifyViewModel}, Path=PressedKeyName}"/>-->
 
     <!-- the application's NotifyIcon - started from App.xaml.cs. Declares its own view model. -->
     <tb:TaskbarIcon x:Key="NotifyIcon"

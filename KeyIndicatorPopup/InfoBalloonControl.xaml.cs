@@ -20,9 +20,24 @@ namespace KeyIndicatorPopup
     /// </summary>
     public partial class InfoBalloonControl : UserControl
     {
+        public static readonly DependencyProperty InfoTextProperty = DependencyProperty.Register("InfoText", typeof(string), typeof(InfoBalloonControl), new PropertyMetadata(""));
+        public string InfoText
+        {
+            get { return (string)this.GetValue(InfoTextProperty); }
+            set { this.SetValue(InfoTextProperty, value); }
+        }
+
+        public static readonly DependencyProperty TitleTextProperty = DependencyProperty.Register("TitleText", typeof(string), typeof(InfoBalloonControl), new PropertyMetadata(""));
+        public string TitleText
+        {
+            get { return (string)this.GetValue(TitleTextProperty); }
+            set { this.SetValue(TitleTextProperty, value); }
+        }
+
         public InfoBalloonControl()
         {
             InitializeComponent();
+            DataContext = this;
         }
     }
 }
