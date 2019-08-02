@@ -8,5 +8,17 @@
     <Setting Name="AppAccent" Type="System.String" Scope="User">
       <Value Profile="(Default)">"Emerald"</Value>
     </Setting>
+    <Setting Name="ShowLetterKeys" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ShowNumericKeys" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ShowLockKeys" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="ShowSystemKeys" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

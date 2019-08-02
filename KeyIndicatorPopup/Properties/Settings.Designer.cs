@@ -46,5 +46,53 @@ namespace KeyIndicatorPopup.Properties {
                 this["AppAccent"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ShowLetterKeys {
+            get {
+                return ((bool)(this["ShowLetterKeys"]));
+            }
+            set {
+                this["ShowLetterKeys"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ShowNumericKeys {
+            get {
+                return ((bool)(this["ShowNumericKeys"]));
+            }
+            set {
+                this["ShowNumericKeys"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ShowLockKeys {
+            get {
+                return ((bool)(this["ShowLockKeys"]));
+            }
+            set {
+                this["ShowLockKeys"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ShowSystemKeys {
+            get {
+                return ((bool)(this["ShowSystemKeys"]));
+            }
+            set {
+                this["ShowSystemKeys"] = value;
+            }
+        }
     }
 }

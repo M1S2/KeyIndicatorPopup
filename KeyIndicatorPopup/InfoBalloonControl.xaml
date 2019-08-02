@@ -5,13 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:KeyIndicatorPopup"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300">
 
     <Grid>
-        <Border Background="#CCA9A9A9" BorderBrush="{DynamicResource AccentBaseColorBrush}" BorderThickness="2" CornerRadius="10" Width="150" Height="150" Margin="50">
+        <Border Background="#CCA9A9A9" BorderBrush="{DynamicResource AccentBaseColorBrush}" BorderThickness="2" CornerRadius="10" MinWidth="150" Height="150" Margin="50">
             <Grid>
-                <TextBlock FontSize="16" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10" Text="{Binding TitleText}"/>
-                <TextBlock FontSize="45" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding InfoText}"/>
+                <TextBlock FontSize="16" Padding="10" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10" Text="{Binding TitleText}"/>
+                <TextBlock FontSize="45" Padding="10" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding InfoText}"/>
             </Grid>
         </Border>
     </Grid>

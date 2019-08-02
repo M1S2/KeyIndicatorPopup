@@ -90,16 +90,31 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="GlobalKeyboardHook.cs" />
+    <Compile Include="Converters\ConditionalBinding.cs" />
+    <Compile Include="ViewModel\SettingBindingExtension.cs" />
+    <Compile Include="LockKeyInfoBalloonControl.xaml.cs">
+      <DependentUpon>LockKeyInfoBalloonControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Keyboard\GlobalKeyboardHook.cs" />
     <Compile Include="InfoBalloonControl.xaml.cs">
       <DependentUpon>InfoBalloonControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Keyboard\GlobalKeyboardHookEventArgs.cs" />
+    <Compile Include="Keyboard\KeyboardState.cs" />
+    <Compile Include="Keyboard\KeyTypes.cs" />
+    <Compile Include="Keyboard\LowLevelKeyboardInputEvent.cs" />
+    <Compile Include="Keyboard\MapVirtualKeyMapTypes.cs" />
+    <Compile Include="Keyboard\VirtualKeyCodes.cs" />
     <Compile Include="ViewModel\NotifyIconViewModel.cs" />
     <Compile Include="WindowTheme\AppThemeData.cs" />
     <Compile Include="WindowTheme\RelayCommand.cs" />
     <Compile Include="WindowTheme\WindowThemeUserControl.xaml.cs">
       <DependentUpon>WindowThemeUserControl.xaml</DependentUpon>
     </Compile>
+    <Page Include="LockKeyInfoBalloonControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="InfoBalloonControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -154,7 +169,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\AppIcon.ico" />
+    <Resource Include="Resources\AppIcon.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

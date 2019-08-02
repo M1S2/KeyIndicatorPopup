@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KeyIndicatorPopup"
+        xmlns:viewModel="clr-namespace:KeyIndicatorPopup.ViewModel"
         xmlns:MetroControls="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:windowTheme="clr-namespace:KeyIndicatorPopup.WindowTheme"
@@ -14,6 +15,12 @@
         Icon="Resources\AppIcon.ico"
         Name="mainWindow">
 
+    <MetroControls:MetroWindow.Resources>
+        <Style TargetType="ToolTip">
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+    </MetroControls:MetroWindow.Resources>
+    
     <MetroControls:MetroWindow.RightWindowCommands>
         <MetroControls:WindowCommands>
             <windowTheme:WindowThemeUserControl/>
@@ -25,10 +32,26 @@
     </MetroControls:MetroWindow.RightWindowCommands>
 
     <Grid>
-        <!--<Popup x:Name="popup1" Width="100" Height="100" AllowsTransparency="True" PopupAnimation="Fade" IsOpen="{Binding PopupOpen}" PlacementTarget="{Binding ElementName=mainWindow}" Placement="Relative" HorizontalOffset="0" VerticalOffset="0">
-            <Border BorderThickness="2" BorderBrush="Black" Background="Gray">
-                <TextBlock Text="ABC" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-            </Border>
-        </Popup>-->
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal" Margin="15">
+                <iconPacks:PackIconEntypo VerticalAlignment="Center" Height="30" Width="50" Margin="0,0,20,0" Kind="LockOpen" Foreground="{DynamicResource AccentBaseColorBrush}"/>
+                <MetroControls:ToggleSwitch Header="Show Lock keys" OnLabel="Yes" OffLabel="No" Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}" IsChecked="{viewModel:SettingBinding ShowLockKeys}" ToolTip="Show notifications when the CAPS-Lock, NUM-Lock or ROLL-Lock keys are pressed."/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="15">
+                <iconPacks:PackIconMaterial VerticalAlignment="Center" Height="30" Width="50" Margin="0,0,20,0" Kind="Alphabetical" Foreground="{DynamicResource AccentBaseColorBrush}"/>
+                <MetroControls:ToggleSwitch Header="Show Letter keys" OnLabel="Yes" OffLabel="No" Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}" IsChecked="{viewModel:SettingBinding ShowLetterKeys}" ToolTip="Show notifications when a letter key is pressed (A - Z)."/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="15">
+                <iconPacks:PackIconMaterial VerticalAlignment="Center" Height="30" Width="50" Margin="0,0,20,0" Kind="Numeric" Foreground="{DynamicResource AccentBaseColorBrush}"/>
+                <MetroControls:ToggleSwitch Header="Show Numeric keys" OnLabel="Yes" OffLabel="No" Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}" IsChecked="{viewModel:SettingBinding ShowNumericKeys}" ToolTip="Show notifications when a number key is pressed (0 - 9)."/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="15">
+                <iconPacks:PackIconEntypo VerticalAlignment="Center" Height="30" Width="50" Margin="0,0,20,0" Kind="Keyboard" Foreground="{DynamicResource AccentBaseColorBrush}"/>
+                <MetroControls:ToggleSwitch Header="Show all other keys" OnLabel="Yes" OffLabel="No" Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}" IsChecked="{viewModel:SettingBinding ShowSystemKeys}" ToolTip="Show notifications when any other key is pressed."/>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </MetroControls:MetroWindow>

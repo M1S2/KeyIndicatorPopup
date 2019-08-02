@@ -8,6 +8,7 @@ using System.Windows.Input;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using KeyIndicatorPopup.WindowTheme;
+using KeyIndicatorPopup.Keyboard;
 using Hardcodet.Wpf.TaskbarNotification;
 
 namespace KeyIndicatorPopup.ViewModel
@@ -39,6 +40,8 @@ namespace KeyIndicatorPopup.ViewModel
         }
         #endregion
 
+        //####################################################################################################################################################################################################
+
         #region Commands
 
         /// <summary>
@@ -51,19 +54,6 @@ namespace KeyIndicatorPopup.ViewModel
                 return new RelayCommand(
                     (c) => { Application.Current.MainWindow = new MainWindow(); Application.Current.MainWindow.Show(); },
                     (c) => Application.Current.MainWindow == null);
-            }
-        }
-
-        /// <summary>
-        /// Hides the main window. This command is only enabled if a window is open.
-        /// </summary>
-        public ICommand HideWindowCommand
-        {
-            get
-            {
-                return new RelayCommand(
-                    (c) => Application.Current.MainWindow.Close(),
-                    (c) => Application.Current.MainWindow != null);
             }
         }
 
@@ -81,52 +71,59 @@ namespace KeyIndicatorPopup.ViewModel
 
         #endregion
 
+        //####################################################################################################################################################################################################
+
         private GlobalKeyboardHook _globalKeyboardHook;
-        //private ResourceDictionary _notifyResourceDict = new ResourceDictionary();
         private TaskbarIcon _notifyIcon;
         private InfoBalloonControl _infoBalloon;
+        private LockKeyInfoBalloonControl _lockInfoBalloon;
+
+        //****************************************************************************************************************************************************************************************************
 
         public NotifyIconViewModel()
         {
-            //_notifyResourceDict.Source = new Uri("/KeyIndicatorPopup;component/NotifyIconResources.xaml", UriKind.RelativeOrAbsolute);
-
             _infoBalloon = new InfoBalloonControl();
+            _lockInfoBalloon = new LockKeyInfoBalloonControl();
 
             _globalKeyboardHook = new GlobalKeyboardHook();
             _globalKeyboardHook.KeyboardPressed += _globalKeyboardHook_KeyboardPressed;
         }
 
+        //****************************************************************************************************************************************************************************************************
+
         private void _globalKeyboardHook_KeyboardPressed(object sender, GlobalKeyboardHookEventArgs e)
         {
-            if (e.KeyboardState == GlobalKeyboardHook.KeyboardState.KeyUp)
+            if (_notifyIcon == null) { _notifyIcon = ((App)Application.Current).NotifyIcon; }
+
+            if (e.KeyType == KeyTypes.Lock && Properties.Settings.Default.ShowLockKeys && (e.KeyboardState == KeyboardState.KeyDown || e.KeyboardState == KeyboardState.SysKeyDown))    // using key down because key up doesn't work for NUM and SCROLL lock keys. Negate all states is neccessary.
             {
-                _notifyIcon = ((App)Application.Current).NotifyIcon;
-                _infoBalloon.TitleText = e.KeyType.ToString();
-
-                //infoBalloon = _notifyResourceDict["InfoBalloon"] as InfoBalloonControl;
-
-                if (e.KeyboardData.VirtualCode == GlobalKeyboardHook.VK_CAPITAL && System.Windows.Forms.Control.IsKeyLocked(System.Windows.Forms.Keys.CapsLock))        //CAPS Lock enabled
+                if (e.KeyboardData.VirtualCode == VirtualKeyCodes.VK_CAPITAL)        //CAPS Lock
                 {
-                    _infoBalloon.InfoText = "ABC";
+                    _lockInfoBalloon.IsLocked = !System.Windows.Forms.Control.IsKeyLocked(System.Windows.Forms.Keys.CapsLock);
+                    _lockInfoBalloon.LockKeyText = _lockInfoBalloon.IsLocked ? "A" : "a";
                 }
-                else if (e.KeyboardData.VirtualCode == GlobalKeyboardHook.VK_CAPITAL && !System.Windows.Forms.Control.IsKeyLocked(System.Windows.Forms.Keys.CapsLock))  //CAPS Lock disabled
+                else if (e.KeyboardData.VirtualCode == VirtualKeyCodes.VK_NUMLOCK)  //NUM Lock
                 {
-                    _infoBalloon.InfoText = "abc";
+                    _lockInfoBalloon.LockKeyText = "1";
+                    _lockInfoBalloon.IsLocked = !System.Windows.Forms.Control.IsKeyLocked(System.Windows.Forms.Keys.NumLock);
                 }
-                else if (e.KeyboardData.VirtualCode == GlobalKeyboardHook.VK_NUMLOCK && System.Windows.Forms.Control.IsKeyLocked(System.Windows.Forms.Keys.NumLock))  //NUM Lock enabled
+                else if (e.KeyboardData.VirtualCode == VirtualKeyCodes.VK_SCROLL)  //SCROLL Lock
                 {
-                    _infoBalloon.InfoText = "123";
-                }
-                else if (e.KeyboardData.VirtualCode == GlobalKeyboardHook.VK_NUMLOCK && !System.Windows.Forms.Control.IsKeyLocked(System.Windows.Forms.Keys.NumLock))  //NUM Lock disabled
-                {
-                    _infoBalloon.InfoText = "NUM off";
-                }
-                else
-                {
-                    _infoBalloon.InfoText = char.ToString(Convert.ToChar(e.KeyboardData.VirtualCode));
+                    _lockInfoBalloon.LockKeyText = "R";
+                    _lockInfoBalloon.IsLocked = !System.Windows.Forms.Control.IsKeyLocked(System.Windows.Forms.Keys.Scroll);
                 }
 
-                _notifyIcon.ShowCustomBalloon(_infoBalloon, System.Windows.Controls.Primitives.PopupAnimation.Fade, 2000);
+                _notifyIcon.ShowCustomBalloon(_lockInfoBalloon, System.Windows.Controls.Primitives.PopupAnimation.Fade, 2000);
+            }
+            else if(e.KeyType != KeyTypes.Lock && (e.KeyboardState == KeyboardState.KeyUp || e.KeyboardState == KeyboardState.SysKeyUp))
+            {
+                if (e.KeyType == KeyTypes.Letter && Properties.Settings.Default.ShowLetterKeys || e.KeyType == KeyTypes.Numeric && Properties.Settings.Default.ShowNumericKeys || e.KeyType == KeyTypes.System && Properties.Settings.Default.ShowSystemKeys)
+                {
+                    _infoBalloon.TitleText = e.KeyType.ToString();
+                    _infoBalloon.InfoText = e.KeyName;
+
+                    _notifyIcon.ShowCustomBalloon(_infoBalloon, System.Windows.Controls.Primitives.PopupAnimation.Fade, 2000);
+                }
             }
         }
     }
