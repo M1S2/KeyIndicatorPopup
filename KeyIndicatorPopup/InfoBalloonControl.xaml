@@ -4,14 +4,29 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:KeyIndicatorPopup"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:converters="clr-namespace:KeyIndicatorPopup.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="300">
+
+    <UserControl.Resources>
+        <converters:KeyTypeToIconConverter x:Key="KeyTypeIconConverter"/>
+    </UserControl.Resources>
 
     <Grid>
         <Border Background="#CCA9A9A9" BorderBrush="{DynamicResource AccentBaseColorBrush}" BorderThickness="2" CornerRadius="10" MinWidth="150" Height="150" Margin="50">
             <Grid>
-                <TextBlock FontSize="16" Padding="10" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10" Text="{Binding TitleText}"/>
-                <TextBlock FontSize="45" Padding="10" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding InfoText}"/>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left">
+                    <Image Width="35" Height="Auto" Margin="10" VerticalAlignment="Center" ToolTip="{Binding KeyType}">
+                        <Image.Source>
+                            <DrawingImage Drawing="{Binding KeyType, Converter={StaticResource KeyTypeIconConverter}}"/>
+                        </Image.Source>
+                    </Image>
+                    
+                    <TextBlock FontSize="18" VerticalAlignment="Center" Text="{Binding KeyType}" Foreground="{DynamicResource AccentBaseColorBrush}"/>
+                </StackPanel>
+                
+                <TextBlock FontSize="50" Padding="10" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding InfoText}" Foreground="{DynamicResource IdealForegroundColorBrush}"/>
             </Grid>
         </Border>
     </Grid>

@@ -10,14 +10,14 @@
         xmlns:windowTheme="clr-namespace:KeyIndicatorPopup.WindowTheme"
         xmlns:tb="http://www.hardcodet.net/taskbar"
         mc:Ignorable="d"
-        Title="Key Indicator Configuration" Height="350" Width="525"
+        Title="Key Indicator Configuration" Height="350" Width="450"
         MetroControls:ControlsHelper.ContentCharacterCasing="Normal"
         Icon="Resources\AppIcon.ico"
         Name="mainWindow">
 
     <MetroControls:MetroWindow.Resources>
         <Style TargetType="ToolTip">
-            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontSize" Value="16"/>
         </Style>
     </MetroControls:MetroWindow.Resources>
     

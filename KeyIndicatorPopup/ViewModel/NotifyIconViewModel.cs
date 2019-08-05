@@ -119,7 +119,7 @@ namespace KeyIndicatorPopup.ViewModel
             {
                 if (e.KeyType == KeyTypes.Letter && Properties.Settings.Default.ShowLetterKeys || e.KeyType == KeyTypes.Numeric && Properties.Settings.Default.ShowNumericKeys || e.KeyType == KeyTypes.System && Properties.Settings.Default.ShowSystemKeys)
                 {
-                    _infoBalloon.TitleText = e.KeyType.ToString();
+                    _infoBalloon.KeyType = e.KeyType;
                     _infoBalloon.InfoText = e.KeyName;
 
                     _notifyIcon.ShowCustomBalloon(_infoBalloon, System.Windows.Controls.Primitives.PopupAnimation.Fade, 2000);

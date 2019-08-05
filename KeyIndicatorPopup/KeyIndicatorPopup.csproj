@@ -91,6 +91,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converters\ConditionalBinding.cs" />
+    <Compile Include="Converters\KeyTypeToIconConverter.cs" />
     <Compile Include="ViewModel\SettingBindingExtension.cs" />
     <Compile Include="LockKeyInfoBalloonControl.xaml.cs">
       <DependentUpon>LockKeyInfoBalloonControl.xaml</DependentUpon>

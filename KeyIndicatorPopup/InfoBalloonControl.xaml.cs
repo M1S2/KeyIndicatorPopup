@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using KeyIndicatorPopup.Keyboard;
 
 namespace KeyIndicatorPopup
 {
@@ -27,11 +28,11 @@ namespace KeyIndicatorPopup
             set { this.SetValue(InfoTextProperty, value); }
         }
 
-        public static readonly DependencyProperty TitleTextProperty = DependencyProperty.Register("TitleText", typeof(string), typeof(InfoBalloonControl), new PropertyMetadata(""));
-        public string TitleText
+        public static readonly DependencyProperty KeyTypeProperty = DependencyProperty.Register("KeyType", typeof(KeyTypes), typeof(InfoBalloonControl), new PropertyMetadata(KeyTypes.Lock));
+        public KeyTypes KeyType
         {
-            get { return (string)this.GetValue(TitleTextProperty); }
-            set { this.SetValue(TitleTextProperty, value); }
+            get { return (KeyTypes)this.GetValue(KeyTypeProperty); }
+            set { this.SetValue(KeyTypeProperty, value); }
         }
 
         public InfoBalloonControl()
