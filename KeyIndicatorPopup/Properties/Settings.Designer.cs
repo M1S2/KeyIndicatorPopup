@@ -37,7 +37,7 @@ namespace KeyIndicatorPopup.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("\"Emerald\"")]
+        [global::System.Configuration.DefaultSettingValueAttribute("\"Cobalt\"")]
         public string AppAccent {
             get {
                 return ((string)(this["AppAccent"]));

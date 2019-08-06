@@ -9,12 +9,17 @@
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:windowTheme="clr-namespace:KeyIndicatorPopup.WindowTheme"
         xmlns:tb="http://www.hardcodet.net/taskbar"
+        xmlns:startup="clr-namespace:KeyIndicatorPopup.Startup"
         mc:Ignorable="d"
-        Title="Key Indicator Configuration" Height="350" Width="450"
+        Title="Key Indicator Configuration" Height="450" Width="450"
         MetroControls:ControlsHelper.ContentCharacterCasing="Normal"
         Icon="Resources\AppIcon.ico"
         Name="mainWindow">
 
+    <MetroControls:MetroWindow.DataContext>
+        <viewModel:MainViewModel/>
+    </MetroControls:MetroWindow.DataContext>
+    
     <MetroControls:MetroWindow.Resources>
         <Style TargetType="ToolTip">
             <Setter Property="FontSize" Value="16"/>
@@ -51,6 +56,13 @@
             <StackPanel Orientation="Horizontal" Margin="15">
                 <iconPacks:PackIconEntypo VerticalAlignment="Center" Height="30" Width="50" Margin="0,0,20,0" Kind="Keyboard" Foreground="{DynamicResource AccentBaseColorBrush}"/>
                 <MetroControls:ToggleSwitch Header="Show all other keys" OnLabel="Yes" OffLabel="No" Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}" IsChecked="{viewModel:SettingBinding ShowSystemKeys}" ToolTip="Show notifications when any other key is pressed."/>
+            </StackPanel>
+
+            <Separator Margin="10"/>
+            
+            <StackPanel Orientation="Horizontal" Margin="15">
+                <iconPacks:PackIconEntypo VerticalAlignment="Center" Height="30" Width="50" Margin="0,0,20,0" Kind="ControllerPlay" Foreground="{DynamicResource AccentBaseColorBrush}"/>
+                <MetroControls:ToggleSwitch Header="Open on Windows startup" OnLabel="Autostart" OffLabel="No Autostart" Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}" IsChecked="{Binding Path=(startup:StartupHelper.IsAppInStartup), Mode=OneWay}" Checked="ToggleSwitch_Toggled" Unchecked="ToggleSwitch_Toggled" ToolTip="Open the app on Windows startup automatically."/>
             </StackPanel>
         </StackPanel>
     </Grid>

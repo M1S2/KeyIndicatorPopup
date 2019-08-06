@@ -6,7 +6,7 @@
       <Value Profile="(Default)">"Dark"</Value>
     </Setting>
     <Setting Name="AppAccent" Type="System.String" Scope="User">
-      <Value Profile="(Default)">"Emerald"</Value>
+      <Value Profile="(Default)">"Cobalt"</Value>
     </Setting>
     <Setting Name="ShowLetterKeys" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>

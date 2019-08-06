@@ -23,9 +23,22 @@ namespace KeyIndicatorPopup
     /// </summary>
     public partial class MainWindow : MetroWindow
     {
+        ViewModel.MainViewModel mainViewModel;
+
         public MainWindow()
         {
             InitializeComponent();
+            this.Loaded += MainWindow_Loaded;
+        }
+
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            mainViewModel = this.DataContext as ViewModel.MainViewModel;
+        }
+
+        private void ToggleSwitch_Toggled(object sender, RoutedEventArgs e)
+        {
+            mainViewModel.AutostartToggleCommand.Execute(((ToggleSwitch)sender).IsChecked.GetValueOrDefault());
         }
     }
 }

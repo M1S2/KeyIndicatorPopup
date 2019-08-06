@@ -20,7 +20,7 @@ namespace KeyIndicatorPopup.ViewModel
     /// </summary>
     /// see: https://github.com/hardcodet/wpf-notifyicon/blob/master/Hardcodet.NotifyIcon.Wpf/Source/Windowless%20Sample/NotifyIconViewModel.cs
     /// see: https://github.com/hardcodet/wpf-notifyicon/tree/master/Hardcodet.NotifyIcon.Wpf/Source/Sample%20Project/Tutorials/09%20-%20MVVM
-    public class NotifyIconViewModel
+    public class NotifyIconViewModel : INotifyPropertyChanged
     {
         #region INotifyPropertyChanged implementation
         /// <summary>

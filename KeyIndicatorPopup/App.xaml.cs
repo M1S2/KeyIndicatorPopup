@@ -25,7 +25,6 @@ namespace KeyIndicatorPopup
 
         protected override void OnStartup(StartupEventArgs e)
         {
-#warning Add app to startup folder
             // Create a temporary theme control to load the saved theme. This is normally done while loading the main window. On startup only the notify icon is loaded and the window loads only if the user want's to.
             WindowTheme.WindowThemeUserControl tmpThemeControl = new WindowTheme.WindowThemeUserControl();
             tmpThemeControl.LoadSavedTheme();
