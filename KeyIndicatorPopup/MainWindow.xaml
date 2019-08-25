@@ -30,9 +30,9 @@
         <MetroControls:WindowCommands>
             <windowTheme:WindowThemeUserControl/>
 
-            <!--<Button Command="{Binding InfoCommand}" ToolTip="About this application">
+            <Button Command="{Binding InfoCommand}" ToolTip="About this application">
                 <iconPacks:PackIconModern Width="22" Height="22" Kind="InformationCircle" Foreground="{DynamicResource IdealForegroundColorBrush}"/>
-            </Button>-->
+            </Button>
         </MetroControls:WindowCommands>
     </MetroControls:MetroWindow.RightWindowCommands>
 

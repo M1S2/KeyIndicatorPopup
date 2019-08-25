@@ -51,6 +51,22 @@ namespace KeyIndicatorPopup.ViewModel
             }
         }
 
+        /// <summary>
+        /// Command that is used to show informations about this application
+        /// </summary>
+        public ICommand InfoCommand
+        {
+            get
+            {
+                return new RelayCommand(
+                    (c) =>
+                    {
+                        AssemblyInfoHelper.WindowAssemblyInfo windowAssemblyInfo = new AssemblyInfoHelper.WindowAssemblyInfo();
+                        windowAssemblyInfo.ShowDialog();
+                    });
+            }
+        }
+
         #endregion
 
         //####################################################################################################################################################################################################
