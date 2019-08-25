@@ -14,7 +14,7 @@ The keys are grouped into one of the following groups:
 This application was developed for all keyboards which drivers didn't show the lock key status out of the box.
 
 ## Usage
-- Download the latest release from ![here](https://github.com/M1S2/KeyIndicatorPopup/releases/latest).
+- Download the latest release from [here](https://github.com/M1S2/KeyIndicatorPopup/releases/latest).
 - Extract the downloaded zip file to any location on your computer (e.g. ProgramFiles folder, the files have to remain there).
 - Double click the `KeyIndicatorPopup.exe` to run the application.
 - Double click the application icon in the system tray to open the configuration window.
