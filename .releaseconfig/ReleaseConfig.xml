@@ -16,30 +16,15 @@
     </VersionFile>
   </VersionFiles>
   <BinaryObjects>
-    <BinaryObject xsi:type="BinaryFile">
+    <BinaryObject xsi:type="BinaryFolder">
       <RemoveWhileBuilding>true</RemoveWhileBuilding>
-      <SourcePath>/KeyIndicatorPopup/bin/Release/KeyIndicatorPopup.exe</SourcePath>
-      <DestinationPath>/bin/KeyIndicatorPopup.exe</DestinationPath>
-    </BinaryObject>
-    <BinaryObject xsi:type="BinaryFile">
-      <RemoveWhileBuilding>true</RemoveWhileBuilding>
-      <SourcePath>/KeyIndicatorPopup/bin/Release/AssemblyInfoHelper.dll</SourcePath>
-      <DestinationPath>/bin/AssemblyInfoHelper.dll</DestinationPath>
-    </BinaryObject>
-    <BinaryObject xsi:type="BinaryFile">
-      <RemoveWhileBuilding>true</RemoveWhileBuilding>
-      <SourcePath>/KeyIndicatorPopup/bin/Release/Markdig.dll</SourcePath>
-      <DestinationPath>/bin/Markdig.dll</DestinationPath>
-    </BinaryObject>
-    <BinaryObject xsi:type="BinaryFile">
-      <RemoveWhileBuilding>true</RemoveWhileBuilding>
-      <SourcePath>/README.md</SourcePath>
-      <DestinationPath>/bin/README.md</DestinationPath>
-    </BinaryObject>
-    <BinaryObject xsi:type="BinaryFile">
-      <RemoveWhileBuilding>true</RemoveWhileBuilding>
-      <SourcePath>/CHANGELOG.md</SourcePath>
-      <DestinationPath>/bin/CHANGELOG.md</DestinationPath>
+      <SourcePath>\KeyIndicatorPopup\bin\Release</SourcePath>
+      <DestinationPath>\bin\</DestinationPath>
+      <FileExcludeFilters>
+        <string>.pdb</string>
+        <string>.xml</string>
+        <string>.config</string>
+      </FileExcludeFilters>
     </BinaryObject>
   </BinaryObjects>
   <ReleaseBuildProcesses>
