@@ -1,6 +1,6 @@
 # KeyIndicatorPopup
 
-## [%version%] - %date%
+## [v1.0.1] - 28.08.2019 20:41
 
 - New AssemblyInfoHelper version used
 

@@ -1,6 +1,6 @@
 # KeyIndicatorPopup
 
-Version: %version%
+Version: v1.0.1
 
 ## Purpose
 This application can be used to display any pressed keys. Whenever a key is pressed, a popup window appears showing which key was pressed.
