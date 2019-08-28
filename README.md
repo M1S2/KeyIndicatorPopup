@@ -18,5 +18,6 @@ This application was developed for all keyboards which drivers didn't show the l
 - Extract the downloaded zip file to any location on your computer (e.g. ProgramFiles folder, the files have to remain there).
 - Double click the `KeyIndicatorPopup.exe` to run the application.
 - Double click the application icon in the system tray to open the configuration window.
-- Add the application to the system startup folder to run it on every system start.
+- Add the application to the system startup folder to run it on every system start using the toggle switch at the bottom of the config window.
 - Select all key groups you want to show.
+- If you close the configuration window, the application is still executed. To close the application, right click on the icon in the system tray and select exit.

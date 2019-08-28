@@ -42,8 +42,8 @@
 copy "$(SolutionDir)CHANGELOG.md" "$(TargetDir)CHANGELOG.md"</PostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AssemblyInfoHelper, Version=4.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\AssemblyInfoHelper.4.1.0\lib\net452\AssemblyInfoHelper.dll</HintPath>
+    <Reference Include="AssemblyInfoHelper, Version=4.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AssemblyInfoHelper.4.1.1\lib\net452\AssemblyInfoHelper.dll</HintPath>
     </Reference>
     <Reference Include="ControlzEx, Version=4.0.0.0, Culture=neutral, PublicKeyToken=69f1c32f803d307e, processorArchitecture=MSIL">
       <HintPath>..\packages\ControlzEx.4.0.0-alpha0303\lib\net45\ControlzEx.dll</HintPath>

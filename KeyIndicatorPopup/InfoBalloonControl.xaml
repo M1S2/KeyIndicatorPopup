@@ -14,7 +14,7 @@
     </UserControl.Resources>
 
     <Grid>
-        <Border Background="#CCA9A9A9" BorderBrush="{DynamicResource AccentBaseColorBrush}" BorderThickness="2" CornerRadius="10" MinWidth="150" Height="150" Margin="50">
+        <Border Background="#F2A9A9A9" BorderBrush="{DynamicResource AccentBaseColorBrush}" BorderThickness="3" CornerRadius="10" MinWidth="150" Height="150" Margin="50">
             <Grid>
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left">
                     <Image Width="30" Height="Auto" Margin="10" VerticalAlignment="Center" ToolTip="{Binding KeyType}">
