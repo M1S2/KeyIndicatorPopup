@@ -1,8 +1,8 @@
 # KeyIndicatorPopup
 
-Version: %version%
+![GitHub Release Version](https://img.shields.io/github/v/release/M1S2/KeyIndicatorPopup)
+[![GitHub License](https://img.shields.io/github/license/M1S2/KeyIndicatorPopup)](LICENSE.md)
 
-## Purpose
 This application can be used to display any pressed keys. Whenever a key is pressed, a popup window appears showing which key was pressed.
 
 The keys are grouped into one of the following groups:
